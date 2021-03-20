@@ -21,7 +21,7 @@ public class Calculator1 {
 
         for (int index = 1; index < values.length; index = index + 2) {
             String operator = values[index + 1];
-            Integer value = toInt(values[index]);
+            int value = toInt(values[index]);
 
             result = operationByOperator.get(operator).apply(result, value);
         }
@@ -29,7 +29,7 @@ public class Calculator1 {
         return result;
     }
 
-    public Integer toInt(String value) {
+    public int toInt(String value) {
         return Integer.parseInt(value);
     }
 }
