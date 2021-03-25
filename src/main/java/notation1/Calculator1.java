@@ -5,14 +5,10 @@ import java.util.function.BiFunction;
 
 public class Calculator1 {
 
-    private static final Map<String, BiFunction<Integer, Integer, Integer>> operationByOperator;
-
-    static {
-        operationByOperator = Map.of(
-                "+", Integer::sum,
-                "x", (a, b) -> a * b
-        );
-    }
+    private static final Map<String, BiFunction<Integer, Integer, Integer>> operationByOperator = Map.of(
+            "+", Integer::sum,
+            "x", (a, b) -> a * b
+    );
 
     public int calculate(String terms) {
         String[] values = terms.split(" ");
