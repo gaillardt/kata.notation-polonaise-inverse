@@ -25,7 +25,7 @@ public class Calculator1 {
         return result;
     }
 
-    public int toInt(String value) {
+    private int toInt(String value) {
         return Integer.parseInt(value);
     }
 }
