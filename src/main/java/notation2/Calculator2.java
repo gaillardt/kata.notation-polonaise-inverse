@@ -1,10 +1,7 @@
 package notation2;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
 
 public class Calculator2 {
     private static final Map<String, BiFunction<Integer, Integer, Integer>> operationByOperator = Map.of(
@@ -13,21 +10,15 @@ public class Calculator2 {
     );
 
     public int calculate(String terms) {
-        List<String> termsSplitted = Arrays.asList(terms.split(" "));
+        String[] values = terms.split(" ");
 
-        int splitIndex = ((termsSplitted.size() - 1) / 2) + 1;
+        int operatorsOffset = (values.length - 1) / 2;
 
-        List<Integer> values = termsSplitted.subList(1, splitIndex).stream()
-                .map(this::toInt)
-                .collect(Collectors.toList());
+        int result = toInt(values[0]);
 
-        List<String> operators = termsSplitted.subList(splitIndex, termsSplitted.size());
-
-        int result = toInt(termsSplitted.get(0));
-
-        for (int index = 0; index < values.size(); index++) {
-            String operator = operators.get(index);
-            int value = values.get(index);
+        for (int index = 1; index <= operatorsOffset; index++) {
+            int value = toInt(values[index]);
+            String operator = values[index + operatorsOffset];
 
             result = operationByOperator.get(operator).apply(result, value);
         }
